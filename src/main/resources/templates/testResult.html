@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Schedule</title>
+</head>
+<body>
+
+<h1>Test Schedule</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Course</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="day : ${schedule}">
+        <td th:text="${day.key}"></td>
+        <td th:each="timeOfDay, courses : ${day.value}" th:text="${timeOfDay}"></td>
+        <td th:each="course : ${courses}" th:text="${course.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

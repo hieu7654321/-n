@@ -1,0 +1,91 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+    font-size: 24px;
+}
+
+
+#search {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search:focus {
+    border-color: #007bff;
+}
+
+
+#studentTable {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+#studentTable thead {
+    background-color: #007bff;
+    color: white;
+    text-align: left;
+}
+
+#studentTable th {
+    padding: 12px 15px;
+    font-size: 18px;
+}
+
+#studentTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-top: 1px solid #ddd;
+}
+
+
+#studentTable tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+@media (max-width: 768px) {
+    #studentTable {
+        width: 95%;
+    }
+
+    #search {
+        width: 90%;
+    }
+}

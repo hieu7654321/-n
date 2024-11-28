@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher's Courses</title>
+  <link rel="stylesheet" th:href="@{/css/globalstyle.css}">
+</head>
+<body>
+
+<div class="container">
+  <h1>Your Courses</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Room</th>
+      <th>Schedule</th>
+      <th>Level</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="course : ${course}">
+      <td th:text="${course.name}"></td>
+      <td th:text="${course.room}"></td>
+      <td th:text="${course.schedule}"></td>
+      <td th:text="${course.level}"></td>
+      <td>
+        <a th:href="@{'/teacher/course/' + ${course.id} + '/students'}">View Students</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

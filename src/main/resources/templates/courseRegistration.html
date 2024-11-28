@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TT Nghệ thuật Phương Linh</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" th:href="@{css/profilecss.css}">
+  <link rel="stylesheet" th:href="@{css/CoursesReg.css}">
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Trang chủ</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile" th:text="${user.username}"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 sidebar">
+      <h4>Chức năng</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="/profile">Thông tin cá nhân</a></li>
+        <li class="nav-item"><a class="nav-link" href="/lophoc">Lớp học</a></li>
+        <li class="nav-item"><a class="nav-link" href="/schedule">Thời khóa biểu</a></li>
+        <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+        <li class="nav-item"><a class="nav-link" href="/hocphi">Học phí</a></li>
+        <li class="nav-item"><a class="nav-link" href="/courses">Đăng ký lớp học</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9 col-lg-10 courseRegistration">
+      <h1>Đăng ký lớp học</h1>
+
+      <div>
+        <h2>Các lớp có sẵn</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Tên lớp</th>
+            <th>Phòng</th>
+            <th>Số lượng</th>
+            <th>Thời gian</th>
+            <th>Trình độ</th>
+            <th>Thao tác</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="course : ${courses}">
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.room}"></td>
+            <td th:text="${course.currentCapacity} + '/' + ${course.maxCapacity}"></td>
+            <td th:text="${course.schedule}"></td>
+            <td th:text="${course.level}"></td>
+            <td>
+              <form th:action="@{'/courses/register/' + ${course.id}}" method="post">
+                <button type="submit" th:disabled="${course.currentCapacity >= course.maxCapacity}">
+                  Đăng ký
+                </button>
+                <span th:if="${course.currentCapacity >= course.maxCapacity}" class="text-danger">Lớp đã đầy</span>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2>Danh sách lớp đã đăng ký</h2>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Tên lớp</th>
+            <th>Phòng</th>
+            <th>Số lượng</th>
+            <th>Thời gian</th>
+            <th>Trình độ</th>
+            <th>Thao tác</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="course : ${enrolledCourses}">
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.room}"></td>
+            <td th:text="${course.currentCapacity} + '/' + ${course.maxCapacity}"></td>
+            <td th:text="${course.schedule}"></td>
+            <td th:text="${course.level}"></td>
+            <td>
+              <form th:action="@{'/courses/cancel/' + ${course.id}}" method="post">
+                <button type="submit" class="btn-danger">Hủy</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div th:if="${role == 'ADMIN'}">
+        <h2>Admin Actions</h2>
+        <button onclick="location.href='/admin/addCourse'">Thêm lớp</button>
+        <button onclick="location.href='/admin/courses'">Phân bổ lớp</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="successModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Đăng ký thành công</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Đăng ký lớp học thành công!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:if="${success}" class="alert alert-success" role="alert">
+  <p th:text="${success}"></p>
+</div>
+
+<div th:if="${error}" class="alert alert-danger" role="alert">
+  <p th:text="${error}"></p>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const successMessage = /*[[${success}]]*/ null;
+  if (successMessage) {
+    const myModal = new bootstrap.Modal(document.getElementById('successModal'));
+    myModal.show();
+  }
+</script>
+
+
+</body>
+</html>

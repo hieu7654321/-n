@@ -1,0 +1,105 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết lớp học</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{css/profilecss.css}">
+    <style>
+
+      .chittietlophoc {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .chittietlophoc h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .chittietlophoc p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      .chittietlophoc h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-top: 40px;
+        font-weight: 600;
+      }
+
+      .chittietlophoc ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .chittietlophoc ul li {
+        background-color: #fff;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      .chittietlophoc ul li:hover {
+        background-color: #e9e9e9;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/home">Trang chủ</a>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/profile" th:text="${user.username}"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-lg-2 sidebar">
+        <h4>Chức năng</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="/profile">Thông tin cá nhân</a></li>
+          <li class="nav-item"><a class="nav-link" href="/lophoc">Lớp học</a></li>
+          <li class="nav-item"><a class="nav-link" href="/schedule">Thời khóa biểu</a></li>
+          <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+          <li class="nav-item"><a class="nav-link" href="/hocphi">Học phí</a></li>
+          <li class="nav-item"><a class="nav-link" href="/courses">Đăng ký lớp học</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-9 col-lg-10 chittietlophoc">
+        <h1 class="mb-4" th:text="${course.name}"></h1>
+        <p><strong>Giáo viên:</strong> <span th:text="${teacherName}"></span></p>
+        <p><strong>Thời gian:</strong> <span th:text="${course.schedule}"></span></p>
+
+        <h2 class="mt-4">Danh sách học viên</h2>
+        <ul>
+          <li th:each="studentFullName : ${studentFullNames}" th:text="${studentFullName}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>

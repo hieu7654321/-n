@@ -1,0 +1,125 @@
+.courseRegistration {
+    padding: 20px;
+}
+
+.courseRegistration h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+.courseRegistration h2 {
+    font-size: 24px;
+    margin-top: 30px;
+    color: #333;
+}
+
+.courseRegistration table {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.courseRegistration thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.courseRegistration th, .courseRegistration td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.courseRegistration th {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.courseRegistration td {
+    font-size: 14px;
+}
+
+.courseRegistration tr:hover {
+    background-color: #bcc5ff;
+}
+
+.courseRegistration button {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.courseRegistration button:hover {
+    background-color: #0056b3;
+}
+
+.courseRegistration button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.courseRegistration .text-danger {
+    color: red;
+    font-size: 14px;
+}
+
+
+.courseRegistration button[onclick] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.courseRegistration button[onclick]:hover {
+    background-color: #218838;
+}
+
+
+@media (max-width: 768px) {
+    .courseRegistration {
+        padding: 15px;
+    }
+
+    .courseRegistration h1 {
+        font-size: 22px;
+    }
+
+    .courseRegistration h2 {
+        font-size: 20px;
+    }
+
+    .courseRegistration table {
+        font-size: 12px;
+    }
+
+    .courseRegistration button {
+        font-size: 12px;
+    }
+
+    .courseRegistration button[onclick] {
+        font-size: 14px;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TT Nghệ thuật Phương Linh</title>
+
+    <link rel="stylesheet" th:href="@{/css/globalstyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homestyle.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #sect4 {
+            background-color: #f7f7f7;
+            padding: 50px 0;
+            color: #333;
+        }
+
+
+        #sect4 .box-header .box-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        #sect4 .box-item.dark {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #sect4 .box-item.dark .icon-box-text p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+
+        #sect4 .icon-box-text {
+            color: #333;
+        }
+
+
+        #sect4 .list-paragraph ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #sect4 .list-paragraph ul li {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        #sect4 .list-paragraph ul li::before {
+            content: '\2022';
+            color: #FF6347;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+
+
+        #sect10 {
+            background-color: #f7f7f7;
+            padding: 50px 0;
+        }
+
+
+        #sect10 .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #sect10 .col-sm-6 {
+            padding: 20px;
+        }
+
+        #sect10 .image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #sect10 .box-wiget {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #sect10 .list-paragraph {
+            margin-top: 20px;
+        }
+
+        #sect10 .list-paragraph ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #sect10 .list-paragraph ul li {
+            position: relative;
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        #sect10 .list-paragraph ul li::before {
+            content: '\2022';
+            color: #4682B4;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+
+        #sect10 .headline {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #sect10 .img-box-text {
+            margin-top: 20px;
+        }
+
+
+        #sect10{
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <img src="https://drive.gianhangvn.com/image/logo-pl-1985907j31544.jpg" alt="Music Center Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/home">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/courses">Lớp học</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/giang-vien">Giảng viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tieng-hat-hoc-vien">Tiếng hát học viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Liên hệ</a></li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:if="${username == null}">
+                        <a class="nav-link" href="/login">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item" th:if="${username == null}">
+                        <a class="nav-link" href="/register">Đăng ký</a>
+                    </li>
+                    <li class="nav-item" th:if="${username != null}">
+                        <a class="nav-link" th:href="@{/profile}" th:text="${username}"></a>
+                    </li>
+                    <li class="nav-item" th:if="${username != null}">
+                        <a class="nav-link" href="/logout">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mt-5">
+    <section>
+        <div class="content-container">
+            <div class="hero-section">
+                <h1>Bạn muốn cải thiện giọng hát? TT Nghệ Thuật Phương Linh sẽ giúp bạn</h1>
+                <p>“Đã đến lúc bạn thay đổi giọng hát của mình”</p>
+                <form action="/register" method="get">
+                    <button class="register-button">Đăng ký ngay</button>
+                </form>
+            </div>
+
+            <section class="course-details">
+                <h2 style="color: white; font-weight: bold">Khóa học thanh nhạc - Học hát karaoke</h2>
+                <div class="course-benefits">
+                    <div class="benefit">
+                        <i class="fa fa-star"></i>
+                        <h3>Cam Kết</h3>
+                        <p>TT NGHỆ THUẬT PHƯƠNG LINH cam kết không sử dụng sinh viên đứng lớp. HOÀN TRẢ 200% HỌC PHÍ nếu học viên đi học mà không có sự cải thiện về giọng hát.(**)</p>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa fa-key"></i>
+                        <h3>Quyền Lợi</h3>
+                        <p>Chỉ cần bạn là học viên của TT NGHỆ THUẬT PHƯƠNG LINH. Bạn sẽ được tham gia tất cả các buổi giao lưu hàng tháng do trung tâm tổ chức ngay cả khi đã KẾT THÚC khóa học.</p>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa fa-wrench"></i>
+                        <h3>Dịch vụ</h3>
+                        <p>Sự chăm sóc, hướng dẫn, theo dõi sát sao, tận tình trước, trong và sau từng buổi học chỉ có tại đội ngũ hỗ trợ giảng dạy TT NGHỆ THUẬT PHƯƠNG LINH</p>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa fa-user"></i>
+                        <h3>Thực hành</h3>
+                        <p>Tất cả các phòng học tại trung tâm được trang bị hệ thống âm thanh và màn hình nhằm phục vụ cho quá trình thực hành trên lớp của các học viên, mang lại hiệu quả cao nhất</p>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa fa-book"></i>
+                        <h3>Mỗi lớp trung bình 5 HV</h3>
+                        <p>KHÔNG có tình trạng 1 THẦY – 20 TRÒ. MỖI LỚP chỉ trung bình 5 HỌC VIÊN và giảng viên trực tiếp hướng dẫn, chỉnh sửa từng người trong suốt khóa học</p>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa fa-cogs"></i>
+                        <h3>Khác biệt</h3>
+                        <p>DUY NHẤT TẠI TT NGHỆ THUẬT PHƯƠNG LINH, các học viên sẽ được thực hành, báo cáo khoá trực tiếp tại phòng hát karaoke. Được hướng dẫn cách biểu diễn, cách chỉnh micro và chọn nhạc phù hợp,...</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-padding sect4" id="sect4">
+                <div class="section-background">&nbsp;</div>
+
+                <div class="section-overlay">&nbsp;</div>
+
+                <div class="box box-default section-content">
+                    <div class="container">
+                        <div class="box-header clearfix">
+                            <p class="box-title" style="color: greenyellow; font-size: 250%">Nội dung chính trong khóa học hát Karaoke</p>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Sửa CÁC LỖI SAI trong Thanh nhạc mà học viên thường mắc phải: hát sai nhạc, sai tone, lệch nhịp, rát họng, hụt hơi…</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Tại khóa học hát Karaoke, học viên sẽ được thực hành các mẫu luyện thanh giúp mở rộng ÂM VỰC GIỌNG, tăng khả năng cảm thụ âm nhạc</p>
+                                        </div>
+                                    </div>
+                                   </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Luyện tập kỹ thuật lấy HƠI THỞ BỤNG, giữ và điều tiết hơi thở, tạo dựng cột hơi chắc khỏe giúp sở hữu giọng hát chắc chắn và đầy nội lực.</p>
+                                        </div>
+                                    </div>
+                                   </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Xác định chính xác quãng giọng, chất giọng của mình giúp học viên LỰA CHỌN ĐÚNG BÀI HÁT phù hợp với chất giọng và sở thích.</p>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Tập luyện các kỹ thuật KHẨU HÌNH, nhả chữ, các bài luyện tập giúp câu hát được tròn vành, rõ chữ.</p>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Được hướng dẫn kỹ thuật CẦM MICRO CHUẨN cùng phong thái linh hoạt khi biểu diễn, tự tin trên sân khấu, tự tin trước đám đông</p>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Kỹ thuật xử lý tình cảm bài hát sao cho khi hát thể hiện được đúng tính chất, cảm xúc bài hát</p>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4">
+                                <div class="box-item dark">
+                                    <div class="icon-box featured-box icon-box-center text-center">
+                                        <div class="icon-box-img">
+                                            <div class="icon">
+                                                <p><i class="fa fa-check-circle">&nbsp;</i></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="icon-box-text last-reset">
+                                            <p style="color: white;">Luôn có tối thiểu 2 đến 3 bài hát được luyện tập bài bản, chuyên nghiệp để GIAO LƯU, BIỂU DIỄN và thể hiện bản thân.</p>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-padding sect10" id="sect10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="element animation">
+                                <div class="image"><img alt="" src="https://drive.gianhangvn.com/image/su-kien-cua-trung-tam-2-1984928j31544.jpg" style="width: 873px;" class=" ls-is-cached lazyloaded" data-src="https://drive.gianhangvn.com/image/su-kien-cua-trung-tam-2-1984928j31544.jpg"></div>
+
+                                <div class="img-box-text last-reset">
+                                    <h2 class="headline">TT NGHỆ THUẬT PHƯƠNG LINH</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="box-wiget">
+                                <h3 class="headline"><span style="font-weight: bold;">LÝ DO CHỌN CHÚNG TÔI?</span></h3>
+
+                                <div class="list-paragraph">
+                                    <ul>
+                                        <li><strong>Cam kết: </strong>100% học viên sau khi kết thúc khóa học đều tự tịn cầm micro hát những bài hát mà mình yêu thích. Luôn tự tin trước tập thể, đám đông và quần chúng.&nbsp;Thể hiện trước bạn bè, trước Sếp, giao lưu với đối tác, mang lại nhiều lợi thế, tạo điều kiện thăng tiến trong công việc.&nbsp;Hòa đồng hơn trong những buổi văn nghệ, gặp mặt, họp lớp,....</li>
+                                        <li>Ngoài ra việc học hát còn là một công cụ giải trí cực kì hiệu quả, giúp bạn thư giãn sau những giờ làm việc mệt mỏi.</li>
+                                        <li>Chuyên đào tạo các bộ môn nghệ thuật như thanh nhạc, piano, organ, guitar,... với đội ngũ giảng viên giàu kinh nghiệm và có trình độ chuyên môn cao</li>
+                                        <li>&nbsp;Ngoài các buổi luyện tập trên lớp học viên sẽ được trải nghiệm thực tế qua các hoạt động ngoại khóa, các buổi offline thường niên của trung tâm.</li>
+                                        <li>Với môi trường đào tạo chuyên nghiệp và đội ngũ giảng viên dày dặn kinh nghiệm, tận tâm, nhiệt tình đến từ các trường học viện âm nhạc quốc gia, đh sư phạm nghệ thuật TW,...</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section>
+    <div class="footer group" id="bottom">
+        <div class="overlay">&nbsp;</div>
+        <div class="container group">
+            <div class="footer-content group">
+                <div class="section group">
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">Trung Tâm Nghệ Thuật TT NGHỆ THUẬT PHƯƠNG LINH</h4>
+                            <ul>
+                                <li><span class="icon"><em class="fa fa-phone">&nbsp; </em> </span>
+                                    <p>Hotline 24/7: 083.346.3333</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-envelope">&nbsp; </em> </span>
+                                    <p>uysukien@gmail.com</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-at">&nbsp; </em> </span>
+                                    <p>www.localhost.com</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">CHI NHÁNH HÀ NỘI:</h4>
+                            <ul>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 1: Số 29 ngõ Thịnh Hào 2, Tôn Đức Thắng, Đống Đa, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 2: Tầng 5 số 40 ngõ 112 Hoàng Quốc Việt- Cầu Giấy- Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 3: Số 197 Trần Phú, Văn Quán, Hà Đông, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 4: Tầng 2 toà CT2B số 609 Trương Định, Hoàng Mai, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 5: Số 65 ngõ 154 Ngọc Lâm - Long Biên- Hà Nội</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 6: Số 20 ngõ 113 Thôn Vàng 2, Cổ Bi, Gia Lâm, Hà Nội.</p>
+                                </li>
+                            </ul>
+
+                            <h4 class="title-footer-block">&nbsp;</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">FANPAGE</h4>
+
+                            <div class="box-left-content collapse-content" style="overflow:hidden;">
+                                <div class="fb-page fb_iframe_widget" data-adapt-container-width="true" data-height="" data-hide-cover="false" data-href="https://www.facebook.com/thanhnhacpl.vn" data-show-facepile="true" data-small-header="false" data-tabs="" data-width="" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=340&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fthanhnhacpl.vn&amp;locale=vi_VN&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=&amp;width=" fb-xfbml-state="rendered"><span style="vertical-align: bottom; width: 340px; height: 130px;"><iframe name="f62694ce368c21ddb" width="1000px" height="1000px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v3.2/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df78c0bc91fad1f06b%26domain%3Dhochat.vn%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Fhochat.vn%252Ff63c1be4dc71cda8c%26relation%3Dparent.parent&amp;container_width=340&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fthanhnhacpl.vn&amp;locale=vi_VN&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=&amp;width=" style="border: none; visibility: visible; width: 340px; height: 130px;" class=""></iframe></span></div>
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <h4 class="title-footer-block">BẢN ĐỒ</h4>
+                            <div class="google-map"><iframe allowfullscreen="" height="250" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.084164717913!2d105.94041471493198!3d20.989263086019733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdd38f69194d5f5e8!2zMjDCsDU5JzIxLjQiTiAxMDXCsDU2JzMzLjQiRQ!5e0!3m2!1svi!2s!4v1637305286872!5m2!1svi!2s" style="border:0;" width="100%"></iframe></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

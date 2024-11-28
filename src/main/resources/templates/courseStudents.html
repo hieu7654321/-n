@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Students</title>
+  <link rel="stylesheet" th:href="@{/css/globalstyle.css}">
+</head>
+<body>
+
+<div class="container">
+  <h1>Students in Course: <span th:text="${course.name}"></span></h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.username}"></td>
+      <td th:text="${student.email}"></td>
+      <td th:text="${student.phone}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a href="/teacher/courses">Back to Courses</a>
+</div>
+
+</body>
+</html>

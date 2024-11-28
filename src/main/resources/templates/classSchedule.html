@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TT Nghệ thuật Phương Linh</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" th:href="@{css/profilecss.css}">
+  <link rel="stylesheet" th:href="@{css/schedule.css}">
+  <style>
+
+    .schedule ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .schedule li {
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .schedule li:hover {
+      background-color: #e2e6ea;
+      transform: translateY(-2px);
+      cursor: pointer;
+    }
+
+    .schedule li strong {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .schedule li span {
+      color: #6c757d;
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+
+    .schedule tr:nth-child(even) li {
+      background-color: #f1f3f5;
+    }
+
+    .schedule tr:nth-child(odd) li {
+      background-color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .schedule table {
+        font-size: 12px;
+      }
+
+      .schedule li {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Trang chủ</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile" th:text="${user.username}"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 sidebar">
+      <h4>Chức năng</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="/profile">Thông tin cá nhân</a></li>
+        <li class="nav-item"><a class="nav-link" href="/lophoc">Lớp học</a></li>
+        <li class="nav-item"><a class="nav-link" href="/schedule">Thời khóa biểu</a></li>
+        <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+        <li class="nav-item"><a class="nav-link" href="/hocphi">Học phí</a></li>
+        <li class="nav-item"><a class="nav-link" href="/courses">Đăng ký lớp học</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9 col-lg-10 schedule">
+      <h1>Thời khóa biểu</h1>
+
+      <table id="schedule-table" class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Thời gian</th>
+          <th>Thứ hai</th>
+          <th>Thứ ba</th>
+          <th>Thứ tư</th>
+          <th>Thứ năm</th>
+          <th>Thứ sáu</th>
+          <th>Thứ bảy</th>
+          <th>Chủ nhật</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Sáng</td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Monday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Tuesday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Wednesday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Thursday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Friday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Saturday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Sunday']['morning']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Chiều</td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Monday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Tuesday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Wednesday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Thursday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Friday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Saturday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Sunday']['afternoon']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Tối</td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Monday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Tuesday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Wednesday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Thursday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Friday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Saturday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li th:each="course : ${schedule['Sunday']['evening']}">
+                <strong th:text="${course.name}"></strong> -
+                <span th:text="${course.room}"></span><br>
+                <span th:text="${course.schedule}"></span> -
+                <span th:text="${course.level}"></span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

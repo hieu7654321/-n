@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ</title>
+
+    <link rel="stylesheet" th:href="@{/css/globalstyle.css}">
+    <link rel="stylesheet" th:href="@{/css/homestyle.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-section {
+            background-color: #fff;
+            padding: 60px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .about-section h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .about-section .section-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #555;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .about-text strong {
+            color: #FF6347;
+            font-weight: 700;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            max-width: 1024px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 30px;
+        }
+
+        .row .col-md-6 {
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .row {
+                flex-direction: row;
+            }
+
+
+            .image-section img {
+                max-width: 90%;
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #FF6347;
+            color: white;
+            padding: 12px 25px;
+            font-size: 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e55347;
+        }
+
+        @media (max-width: 576px) {
+            .cta-button {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+        }
+
+        .services-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .service-box:hover .service-icon {
+            color: #e74c3c;
+        }
+
+
+        @media (max-width: 768px) {
+            .service-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .service-box {
+                padding: 20px;
+            }
+
+            .service-icon {
+                font-size: 36px;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <img src="https://drive.gianhangvn.com/image/logo-pl-1985907j31544.jpg" alt="Music Center Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/home">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/courses">Lớp học</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/giang-vien">Giảng viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tieng-hat-hoc-vien">Tiếng hát học viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Liên hệ</a></li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:if="${username == null}">
+                        <a class="nav-link" href="/login">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item" th:if="${username == null}">
+                        <a class="nav-link" href="/register">Đăng ký</a>
+                    </li>
+                    <li class="nav-item" th:if="${username != null}">
+                        <a class="nav-link" th:href="@{/profile}" th:text="${username}"></a>
+                    </li>
+                    <li class="nav-item" th:if="${username != null}">
+                        <a class="nav-link" href="/logout">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mt-5">
+    <section class="about-section">
+        <h2 class="section-title">Giới Thiệu Về Trung Tâm Nghệ Thuật Phương Linh</h2>
+        <p class="section-subtitle">Chúng tôi mang đến một trải nghiệm học tập nghệ thuật đẳng cấp, từ thanh nhạc đến piano, guitar và nhiều bộ môn nghệ thuật khác.</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="image-section">
+                    <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/463162021_959633829516545_8391957053349835379_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=dfrN8YovDcsQ7kNvgEIUPb8&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=A6h7HZc2vI0rMt7k3G6L4sr&oh=00_AYC942aiMTpzZgRaq9AJC3HjaaL5y0agmFPRsPC4PThYFQ&oe=6748AB7E" alt="Trung tâm Nghệ Thuật Phương Linh">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="about-text">
+                    Trung tâm Nghệ Thuật Phương Linh được thành lập với sứ mệnh mang lại những khóa học nghệ thuật chất lượng cao, giúp học viên không chỉ cải thiện kỹ năng mà còn phát triển đam mê trong lĩnh vực âm nhạc và nghệ thuật.
+                    Chúng tôi tự hào có đội ngũ giảng viên chuyên nghiệp, nhiệt tình, giàu kinh nghiệm và luôn tận tâm với từng học viên. Trung tâm cung cấp các khóa học từ thanh nhạc, piano, guitar đến các bộ môn nghệ thuật khác với phương pháp giảng dạy hiện đại và dễ tiếp cận.
+                </p>
+                <p class="about-text">
+                    Với cơ sở vật chất hiện đại, môi trường học tập thân thiện, trung tâm chúng tôi cam kết mang đến cho học viên một không gian học tập lý tưởng để phát triển tài năng và đam mê nghệ thuật.
+                </p>
+                <a href="/courses" class="cta-button">Khám Phá Khóa Học Của Chúng Tôi</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h3 class="section-title">Dịch Vụ Của Chúng Tôi</h3>
+        <div class="service-container">
+            <div class="service-box">
+                <i class="fa fa-microphone service-icon"></i>
+                <h4>Khóa học thanh nhạc</h4>
+                <p>Các khóa học thanh nhạc từ cơ bản đến nâng cao, giúp học viên cải thiện giọng hát và kỹ thuật thanh nhạc.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa fa-guitar service-icon"></i>
+                <h4>Học Guitar</h4>
+                <p>Học guitar từ cơ bản, với sự hướng dẫn chi tiết và thực hành thực tế.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa fa-music service-icon"></i>
+                <h4>Lớp học Piano</h4>
+                <p>Lớp học piano dành cho mọi lứa tuổi, với giáo trình dễ hiểu và thực hành trên đàn thực tế.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa fa-users service-icon"></i>
+                <h4>Lớp học nhóm</h4>
+                <p>Các lớp học nhóm và các buổi giao lưu, biểu diễn giúp học viên tự tin hơn khi đứng trên sân khấu.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa fa-calendar service-icon"></i>
+                <h4>Sự kiện & Ngoại khóa</h4>
+                <p>Tổ chức các sự kiện và hoạt động ngoại khóa để học viên có cơ hội trải nghiệm và giao lưu.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<section>
+    <div class="footer group" id="bottom">
+        <div class="overlay">&nbsp;</div>
+        <div class="container group">
+            <div class="footer-content group">
+                <div class="section group">
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">Trung Tâm Nghệ Thuật TT NGHỆ THUẬT PHƯƠNG LINH</h4>
+                            <ul>
+                                <li><span class="icon"><em class="fa fa-phone">&nbsp; </em> </span>
+                                    <p>Hotline 24/7: 083.346.3333</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-envelope">&nbsp; </em> </span>
+                                    <p>uysukien@gmail.com</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-at">&nbsp; </em> </span>
+                                    <p>www.localhost.com</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">CHI NHÁNH HÀ NỘI:</h4>
+                            <ul>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 1: Số 29 ngõ Thịnh Hào 2, Tôn Đức Thắng, Đống Đa, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 2: Tầng 5 số 40 ngõ 112 Hoàng Quốc Việt- Cầu Giấy- Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 3: Số 197 Trần Phú, Văn Quán, Hà Đông, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 4: Tầng 2 toà CT2B số 609 Trương Định, Hoàng Mai, Hà Nội.</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 5: Số 65 ngõ 154 Ngọc Lâm - Long Biên- Hà Nội</p>
+                                </li>
+                                <li><span class="icon"><em class="fa fa-home">&nbsp; </em> </span>
+                                    <p>Cơ sở 6: Số 20 ngõ 113 Thôn Vàng 2, Cổ Bi, Gia Lâm, Hà Nội.</p>
+                                </li>
+                            </ul>
+
+                            <h4 class="title-footer-block">&nbsp;</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-block">
+                        <div class="contact">
+                            <h4 class="title-footer-block">FANPAGE</h4>
+
+                            <div class="box-left-content collapse-content" style="overflow:hidden;">
+                                <div class="fb-page fb_iframe_widget" data-adapt-container-width="true" data-height="" data-hide-cover="false" data-href="https://www.facebook.com/thanhnhacpl.vn" data-show-facepile="true" data-small-header="false" data-tabs="" data-width="" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=340&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fthanhnhacpl.vn&amp;locale=vi_VN&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=&amp;width=" fb-xfbml-state="rendered"><span style="vertical-align: bottom; width: 340px; height: 130px;"><iframe name="f62694ce368c21ddb" width="1000px" height="1000px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v3.2/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df78c0bc91fad1f06b%26domain%3Dhochat.vn%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Fhochat.vn%252Ff63c1be4dc71cda8c%26relation%3Dparent.parent&amp;container_width=340&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fthanhnhacpl.vn&amp;locale=vi_VN&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=&amp;width=" style="border: none; visibility: visible; width: 340px; height: 130px;" class=""></iframe></span></div>
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <h4 class="title-footer-block">BẢN ĐỒ</h4>
+                            <div class="google-map"><iframe allowfullscreen="" height="250" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.084164717913!2d105.94041471493198!3d20.989263086019733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdd38f69194d5f5e8!2zMjDCsDU5JzIxLjQiTiAxMDXCsDU2JzMzLjQiRQ!5e0!3m2!1svi!2s!4v1637305286872!5m2!1svi!2s" style="border:0;" width="100%"></iframe></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

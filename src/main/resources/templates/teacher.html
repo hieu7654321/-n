@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Teachers</title>
+</head>
+<body>
+<div class="container">
+  <h1>Our Teachers</h1>
+  <div class="teacher-list">
+    <div th:each="teacher : ${teachers}">
+      <div class="teacher-card">
+        <img th:src="${teacher.avatar}" alt="Avatar" class="avatar">
+        <h2 th:text="${teacher.surname} ${teacher.lastname}"></h2>
+        <a th:href="@{'/teacher/' + ${teacher.id} + '/details'}">View More</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

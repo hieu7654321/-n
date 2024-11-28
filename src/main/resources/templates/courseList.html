@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Khóa Học</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        thead {
+            background-color: #007bff;
+            color: white;
+            text-align: left;
+        }
+
+        th {
+            padding: 12px 15px;
+            font-size: 18px;
+        }
+
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-top: 1px solid #ddd;
+        }
+
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #e
+
+    </style>
+</head>
+<body>
+<h1>Danh Sách Khóa Học</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Tên Khóa Học</th>
+        <th>Phòng</th>
+        <th>Thời Gian</th>
+        <th>Thao Tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="course : ${courses}">
+        <tr>
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.room}"></td>
+            <td th:text="${course.schedule}"></td>
+            <td>
+                <a th:href="@{/admin/course/{courseId}(courseId=${course.id})}">Chi tiết</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>

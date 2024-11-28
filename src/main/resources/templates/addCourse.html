@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TT Nghệ thuật Phương Linh</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" th:href="@{css/profilecss.css}">
+  <link rel="stylesheet" th:href="@{css/AddCourse.css}">
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Trang chủ</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile" th:text="${user.username}"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 sidebar">
+      <h4>Chức năng</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="/profile">Thông tin cá nhân</a></li>
+        <li class="nav-item"><a class="nav-link" href="/lophoc">Lớp học</a></li>
+        <li class="nav-item"><a class="nav-link" href="/schedule">Thời khóa biểu</a></li>
+        <li class="nav-item"><a class="nav-link" href="/event">Sự kiện</a></li>
+        <li class="nav-item"><a class="nav-link" href="/hocphi">Học phí</a></li>
+        <li class="nav-item"><a class="nav-link" href="/courses">Đăng ký lớp học</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9 col-lg-10 addCourse">
+      <h2>Thêm lớp</h2>
+      <form action="/admin/addCourse" method="POST">
+        <div class="mb-3">
+          <label for="courseName" class="form-label">Tên lớp</label>
+          <input type="text" class="form-control" id="courseName" name="courseName" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="room" class="form-label">Phòng học</label>
+          <input type="text" class="form-control" id="room" name="room" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="classSize" class="form-label">Số lượng sinh viên</label>
+          <input type="number" class="form-control" id="classSize" name="classSize" required oninput="updateClassFeeOptions()">
+        </div>
+
+        <div class="mb-3">
+          <label for="classFee" class="form-label">Học phí</label>
+          <select class="form-select" id="classFee" name="classFee">
+            <option value="">Select Fee</option>
+            <option value="5000000" id="fee1">5 triệu - 1 học viên</option>
+            <option value="3000000" id="fee2">3 triệu - 2 học viên</option>
+            <option value="2000000" id="fee3">2 triệu - 5 học viên</option>
+          </select>
+
+          <div class="mt-2" id="customFeeWrapper" style="display: none;">
+            <input class="form-control" type="number" id="customFee" name="classFee" placeholder="Nhập học phí tùy chọn" step="100000">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="startTime" class="form-label">Thời gian bắt đầu</label>
+          <input type="time" class="form-control" id="startTime" name="startTime" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="endTime" class="form-label">Thời gian kết thúc</label>
+          <input type="time" class="form-control" id="endTime" name="endTime" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="courseDate" class="form-label">Ngày khai giảng</label>
+          <input type="date" class="form-control" id="courseDate" name="courseDate" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="level" class="form-label">Trình độ</label>
+          <select class="form-select" id="level" name="level" required>
+            <option value="">Chọn trình độ</option>
+            <option value="Cơ bản">Cơ bản</option>
+            <option value="Trung cấp">Trung cấp</option>
+            <option value="Nâng cao">Nâng cao</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Add Course</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function updateClassFeeOptions() {
+    const classSize = document.getElementById('classSize').value;
+    const feeSelect = document.getElementById('classFee');
+    const feeOptions = feeSelect.querySelectorAll('option');
+    const customFeeWrapper = document.getElementById('customFeeWrapper');
+    const selFeeWrapper = document.getElementById('classFee')
+
+    feeSelect.innerHTML = '<option value="">Select Fee</option>';
+
+    if (classSize == 1) {
+      feeSelect.innerHTML += '<option value="5000000">5 triệu - 1 học viên</option>';
+    } else if (classSize == 2) {
+      feeSelect.innerHTML += '<option value="3000000">3 triệu - 2 học viên</option>';
+    } else if (classSize == 5) {
+      feeSelect.innerHTML += '<option value="2000000">2 triệu - 5 học viên</option>';
+    } else {
+      customFeeWrapper.style.display = 'block';
+      return;
+    }
+
+    customFeeWrapper.style.display = 'none';
+  }
+</script>
+</body>
+</html>
